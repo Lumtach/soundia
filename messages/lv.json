@@ -1,0 +1,98 @@
+{
+  "seo": {
+    "title": "Soundia — creative audio studio",
+    "description": "Soundia veido audiogidus, audiokvestus, 3D skaņu un kultūras skaņas pieredzes."
+  },
+  "nav": {
+    "work": "Portfolio",
+    "services": "Pakalpojumi",
+    "pricing": "Cenas",
+    "contact": "Kontakti",
+    "courses": "Kursi",
+    "about": "Studija"
+  },
+  "common": {
+    "discussProject": "Apspriest projektu ↗",
+    "viewCase": "Atvērt projektu ↗",
+    "watchCourses": "Skatīt kursus ↗",
+    "play": "Play",
+    "pause": "Pause"
+  },
+  "case": {
+    "back": "Selected work",
+    "type": "Tips",
+    "place": "Vieta",
+    "year": "Gads",
+    "facts": "Projekta dati",
+    "orderAudioGuide": "Pasūtīt audiogidu",
+    "next": "Nākamais projekts"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Soundia Creative Studio · Rīga",
+      "headline": ["Skaņa,", "kas", "rada", "telpu."],
+      "meta": ["15+ gadu pieredze", "3D / Spatial / Interactive sound", "RU / LV / EN · 3 valodas"],
+      "scroll": "Scroll"
+    },
+    "work": {
+      "label": "01 / Selected work",
+      "headline": ["Stāsti,", "kas", "jau skan."]
+    },
+    "services": {
+      "label": "02 / What we create",
+      "headline": ["No idejas", "līdz gatavai", "skaņas pasaulei."]
+    },
+    "soundExperience": {
+      "headline": ["Skaņa —", "nav fons.", "Tā ir", "telpa."],
+      "text": "Balss, klusums, ritms un telpa kļūst par materiālu kultūras pieredzei."
+    },
+    "about": {
+      "label": "03 / About Soundia",
+      "headline": ["Mēs radām", "ne tikai skaņu.", "Mēs radām", "pieredzi."],
+      "body": "Soundia ir creative audio studio Rīgā. Mēs strādājam ar muzejiem, kultūras institūcijām, pilsētas maršrutiem un izglītības projektiem.",
+      "metrics": [
+        { "value": "15+", "label": "gadu pieredze" },
+        { "value": "RU / LV / EN", "label": "3 valodas" }
+      ]
+    },
+    "process": {
+      "label": "04 / Process",
+      "headline": "Kā rodas skaņa",
+      "steps": [
+        { "title": "Klausāmies", "text": "Izpētām telpu, auditoriju, dramaturģiju un projekta uzdevumu." },
+        { "title": "Radām", "text": "Rakstām scenāriju, ierakstām balsis un veidojam skaņas pasauli." },
+        { "title": "Pārbaudām", "text": "Testējam maršrutu, tempu, saprotamību un emocionālo precizitāti." },
+        { "title": "Nododam", "text": "Sagatavojam materiālus palaišanai un pavadām publikāciju." }
+      ]
+    },
+    "pricing": {
+      "label": "05 / Packages",
+      "headline": "Paketes un sākuma budžeti"
+    },
+    "clients": {
+      "label": "06 / Clients",
+      "headline": "Kultūra, pilsētas, muzeji, zīmoli.",
+      "list": ["Museums", "Galleries", "Cultural routes", "Education", "Festivals", "Urban projects"]
+    },
+    "courses": {
+      "label": "07 / Courses",
+      "headline": ["Iemācies", "strādāt", "ar skaņu."],
+      "text": "Sākumlapā ir īss ievads. Pilns kursu saraksts paliek esošajā lapā."
+    },
+    "faq": {
+      "label": "FAQ",
+      "items": [
+        { "question": "Kādās valodās jūs strādājat?", "answer": "Soundia strādā krievu, latviešu un angļu valodā." },
+        { "question": "Vai var pasūtīt tikai ierakstu vai montāžu?", "answer": "Jā, formāts tiek saskaņots ar projekta uzdevumu." },
+        { "question": "Kā sākt projektu?", "answer": "Atsūtiet īsu idejas, telpas un termiņu aprakstu — piedāvāsim nākamo soli." }
+      ]
+    },
+    "contact": {
+      "headline": ["Ir", "stāsts?", "Dosim tam", "skanējumu. ↗"],
+      "label": "Start a project"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Soundia. All rights reserved."
+  }
+}

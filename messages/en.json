@@ -1,0 +1,98 @@
+{
+  "seo": {
+    "title": "Soundia — creative audio studio",
+    "description": "Soundia creates audio guides, audio quests, spatial sound and cultural sound experiences."
+  },
+  "nav": {
+    "work": "Work",
+    "services": "Services",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "courses": "Courses",
+    "about": "About"
+  },
+  "common": {
+    "discussProject": "Discuss a project ↗",
+    "viewCase": "View case ↗",
+    "watchCourses": "Explore courses ↗",
+    "play": "Play",
+    "pause": "Pause"
+  },
+  "case": {
+    "back": "Selected work",
+    "type": "Type",
+    "place": "Place",
+    "year": "Year",
+    "facts": "Project facts",
+    "orderAudioGuide": "Order an audio guide",
+    "next": "Next case"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Soundia Creative Studio · Riga",
+      "headline": ["Sound", "that", "creates", "space."],
+      "meta": ["15+ years experience", "3D / Spatial / Interactive sound", "RU / LV / EN · 3 languages"],
+      "scroll": "Scroll"
+    },
+    "work": {
+      "label": "01 / Selected work",
+      "headline": ["Stories", "already", "in sound."]
+    },
+    "services": {
+      "label": "02 / What we create",
+      "headline": ["From idea", "to a complete", "sound world."]
+    },
+    "soundExperience": {
+      "headline": ["Sound is", "not a background.", "It is", "space."],
+      "text": "Voice, silence, rhythm and space become the material of a cultural experience."
+    },
+    "about": {
+      "label": "03 / About Soundia",
+      "headline": ["We create", "more than sound.", "We create", "experience."],
+      "body": "Soundia is a creative audio studio in Riga. We work with museums, cultural institutions, city routes and educational projects, turning script, voice and sound into a complete experience.",
+      "metrics": [
+        { "value": "15+", "label": "years experience" },
+        { "value": "RU / LV / EN", "label": "3 languages" }
+      ]
+    },
+    "process": {
+      "label": "04 / Process",
+      "headline": "How sound takes shape",
+      "steps": [
+        { "title": "Listen", "text": "We study the space, audience, dramaturgy and project task." },
+        { "title": "Create", "text": "We write, record voices, compose rhythm and build the sound world." },
+        { "title": "Test", "text": "We test route, pacing, clarity and emotional accuracy." },
+        { "title": "Deliver", "text": "We prepare launch materials and support publication." }
+      ]
+    },
+    "pricing": {
+      "label": "05 / Packages",
+      "headline": "Packages and starting budgets"
+    },
+    "clients": {
+      "label": "06 / Clients",
+      "headline": "Culture, cities, museums, brands.",
+      "list": ["Museums", "Galleries", "Cultural routes", "Education", "Festivals", "Urban projects"]
+    },
+    "courses": {
+      "label": "07 / Courses",
+      "headline": ["Learn", "to work", "with sound."],
+      "text": "The homepage carries a short teaser. The full course list stays on the existing page."
+    },
+    "faq": {
+      "label": "FAQ",
+      "items": [
+        { "question": "Which languages do you work in?", "answer": "Soundia works in Russian, Latvian and English." },
+        { "question": "Can we order only recording or editing?", "answer": "Yes, the format is shaped around the project task." },
+        { "question": "How do we start?", "answer": "Send a short note about the idea, space and timeline — we will propose the next step." }
+      ]
+    },
+    "contact": {
+      "headline": ["Have", "a story?", "Give it", "sound. ↗"],
+      "label": "Start a project"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Soundia. All rights reserved."
+  }
+}
