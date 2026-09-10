@@ -27,9 +27,9 @@ export function Header({
         </span>
       </Link>
       <nav className="site-header__nav" aria-label="Primary navigation">
-        <Link href="/#work">{nav.work}</Link>
-        <Link href="/#services">{nav.services}</Link>
-        <Link href="/#pricing">{nav.pricing}</Link>
+        <Link href={localizePath(locale, "/portfolio")}>{nav.work}</Link>
+        <Link href={localizePath(locale, "/services")}>{nav.services}</Link>
+        <Link href={localizePath(locale, "/pricing")}>{nav.pricing}</Link>
         <Link href="/#courses">{nav.courses}</Link>
         <Link href="/#about">{nav.about}</Link>
       </nav>

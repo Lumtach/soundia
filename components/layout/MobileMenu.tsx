@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { LanguageDropdown } from "./LanguageDropdown";
-import type { Locale } from "@/lib/i18n";
+import { localizePath, type Locale } from "@/lib/i18n";
 
 export function MobileMenu({
   locale,
@@ -26,9 +26,9 @@ export function MobileMenu({
           </button>
           <nav className="mobile-menu__nav" aria-label="Mobile navigation">
             {[
-              ["work", "/#work"],
-              ["services", "/#services"],
-              ["pricing", "/#pricing"],
+              ["work", "/portfolio"],
+              ["services", localizePath(locale, "/services")],
+              ["pricing", localizePath(locale, "/pricing")],
               ["courses", "/#courses"],
               ["about", "/#about"],
             ].map(([key, href]) => (

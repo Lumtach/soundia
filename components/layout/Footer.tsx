@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { contacts } from "@/lib/data";
-import type { Locale } from "@/lib/i18n";
+import { localizePath, type Locale } from "@/lib/i18n";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa6";
 import { JSX } from "react/jsx-runtime";
 
@@ -11,6 +11,7 @@ const socialIcons: Record<string, JSX.Element> = {
 };
 
 export function Footer({
+  locale,
   nav,
   footer
 }: {
@@ -38,9 +39,9 @@ export function Footer({
           </div>
 
           <nav className="footer__nav" aria-label="Footer navigation">
-            <Link href="/#work">{nav.work}</Link>
-            <Link href="/#services">{nav.services}</Link>
-            <Link href="/#pricing">{nav.pricing}</Link>
+            <Link href={localizePath(locale, "/portfolio")}>{nav.work}</Link>
+            <Link href={localizePath(locale, "/services")}>{nav.services}</Link>
+            <Link href={localizePath(locale, "/pricing")}>{nav.pricing}</Link>
             <Link href="/#about">{nav.about}</Link>
             <Link href="/#courses">{nav.courses}</Link>
           </nav>

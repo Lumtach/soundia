@@ -1,4 +1,4 @@
-import { Waveform } from "@/components/audio/Waveform";
+import { ArSoundField } from "@/components/home/ArSoundField";
 import { Container } from "@/components/ui/Container";
 import type { Locale } from "@/lib/i18n";
 
@@ -21,21 +21,7 @@ export function HeroSection({
               </span>
             ))}
           </h1>
-          <div className="hero__sound" aria-hidden="true">
-            <div className="hero__rings">
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="hero__bars">
-              {Array.from({ length: 34 }, (_, index) => (
-                <span key={index} style={{ height: `${34 + ((index * 17) % 56)}%` }} />
-              ))}
-            </div>
-          </div>
-          <div className="hero__wave">
-            <Waveform />
-          </div>
+          <ArSoundField />
           <div className="hero__meta">
             {copy.meta.map((item) => (
               <span key={item}>{item}</span>

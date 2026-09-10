@@ -8,13 +8,18 @@ export const metadata: Metadata = {
   description: "Динамическая форма заказа аудиогида с настройками по каждому слоту."
 };
 
-export default async function OrderPage() {
+export default async function OrderPage({
+  searchParams
+}: {
+  searchParams: Promise<{ service?: string }>;
+}) {
   const locale = await getCurrentLocale();
+  const { service } = await searchParams;
 
   return (
     <main className="order-page">
       <Container>
-        <AudioGuideOrderForm locale={locale} />
+        <AudioGuideOrderForm key={`${locale}-${service ?? "default"}`} locale={locale} selectedService={service} />
       </Container>
     </main>
   );

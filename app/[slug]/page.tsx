@@ -60,7 +60,7 @@ export default async function WorkCasePage({
             <SectionLabel>
               {project.number} / {project.category[locale]}
             </SectionLabel>
-            <Link href={localizePath(locale, "/#work")}>{t.case.back}</Link>
+            <Link href={localizePath(locale, "/portfolio")}>{t.case.back}</Link>
           </div>
           <header className="case-page__hero">
             <div className="case-page__intro">

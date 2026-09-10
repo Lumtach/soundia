@@ -1,11 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { audioGuideOptionPrices as filterPrices, audioGuidePackagesByTiming as packagesByTiming, getServiceStartingPrice, pricingCards as prices } from "@/lib/pricing";
 import type { Locale } from "@/lib/i18n";
 
 type Slot = {
   id: number;
   title: string;
+  serviceId: string;
   timing: number;
   scenario: number;
   langs: number[];
@@ -178,24 +180,6 @@ const musicOptions = [
   { id: 52, labels: { ru: "Авторская", lv: "Autormūzika", en: "Original" } }
 ] satisfies Option[];
 
-const packagesByTiming: Record<number, Package> = {
-  1: { price: 400, timing: 1, scenario: 10, languageId: "20", sounds: 30, soundDesign: 40, music: 50 },
-  2: { price: 470, timing: 2, scenario: 10, languageId: "20", sounds: 30, soundDesign: 40, music: 50 },
-  3: { price: 540, timing: 3, scenario: 10, languageId: "20", sounds: 30, soundDesign: 40, music: 50 },
-  4: { price: 610, timing: 4, scenario: 10, languageId: "20", sounds: 30, soundDesign: 40, music: 50 }
-};
-
-const filterPrices: FilterPrice[] = [1, 2, 3, 4].flatMap((timingId) => [
-  { filterId: 11, timingId, price: 220 },
-  { filterId: 12, timingId, price: 90 },
-  { filterId: 21, timingId, price: 80 },
-  { filterId: 22, timingId, price: 80 },
-  { filterId: 31, timingId, price: 120 },
-  { filterId: 32, timingId, price: 260 },
-  { filterId: 41, timingId, price: -120 },
-  { filterId: 51, timingId, price: 140 },
-  { filterId: 52, timingId, price: 360 }
-]);
 
 function priceParam(tariffs: FilterPrice[], filterIds: number[], timingId: number): number {
   return tariffs
@@ -235,20 +219,18 @@ function calcOrderPrice(pkg: Package, input: OrderInput, tariffs: FilterPrice[])
   return price;
 }
 
-function calcTotalPrice(pkg: Package, input: OrderInput, tariffs: FilterPrice[]): number {
-  return pkg.price + calcOrderPrice(pkg, input, tariffs);
-}
-
 function getLabel(options: readonly Option[], id: number, locale: Locale) {
   return options.find((option) => option.id === id)?.labels[locale] ?? "";
 }
 
-function createSlot(locale: Locale, id: number): Slot {
+function createSlot(locale: Locale, id: number, serviceId?: string): Slot {
   const t = copy[locale];
+  const selectedService = prices.find((service) => service.id === serviceId);
 
   return {
     id,
-    title: `${t.slot} ${id}`,
+    title: selectedService ? selectedService.title[locale] : `${t.slot} ${id}`,
+    serviceId: selectedService?.id ?? "guide",
     timing: 2,
     scenario: 10,
     langs: [20],
@@ -260,8 +242,10 @@ function createSlot(locale: Locale, id: number): Slot {
 
 function getPrice(slot: Slot) {
   const pkg = packagesByTiming[slot.timing] ?? packagesByTiming[2];
+  const defaultTimingPackage = packagesByTiming[2];
+  const durationAdjustment = pkg.price - defaultTimingPackage.price;
 
-  return calcTotalPrice(pkg, slot, filterPrices);
+  return getServiceStartingPrice(slot.serviceId) + durationAdjustment + calcOrderPrice(pkg, slot, filterPrices);
 }
 
 function describeSlot(slot: Slot, locale: Locale) {
@@ -275,9 +259,9 @@ function describeSlot(slot: Slot, locale: Locale) {
   };
 }
 
-export function AudioGuideOrderForm({ locale }: { locale: Locale }) {
+export function AudioGuideOrderForm({ locale, selectedService }: { locale: Locale; selectedService?: string }) {
   const t = copy[locale];
-  const [slots, setSlots] = useState<Slot[]>(() => [createSlot(locale, 1)]);
+  const [slots, setSlots] = useState<Slot[]>(() => [createSlot(locale, 1, selectedService)]);
   const [modalOpen, setModalOpen] = useState(false);
   const total = useMemo(() => slots.reduce((sum, slot) => sum + getPrice(slot), 0), [slots]);
 
@@ -286,7 +270,7 @@ export function AudioGuideOrderForm({ locale }: { locale: Locale }) {
   };
 
   const addSlot = () => {
-    setSlots((items) => [...items, createSlot(locale, Math.max(...items.map((item) => item.id)) + 1)]);
+    setSlots((items) => [...items, createSlot(locale, Math.max(...items.map((item) => item.id)) + 1, selectedService)]);
   };
 
   const removeSlot = (id: number) => {
