@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { setLocale as setLocaleAction } from "@/app/actions";
 import { locales, type Locale } from "@/lib/i18n";
@@ -13,9 +13,23 @@ const languageLabels: Record<Locale, string> = {
 
 export function LanguageDropdown({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDetailsElement>(null);
   const pathname = usePathname();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (!open) return;
+
+    function closeOnOutsideClick(event: PointerEvent) {
+      if (!dropdownRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, [open]);
 
   function setLocale(nextLocale: Locale) {
     setOpen(false);
@@ -28,7 +42,12 @@ export function LanguageDropdown({ locale }: { locale: Locale }) {
   }
 
   return (
-    <details className="language-dropdown" open={open} onToggle={(event) => setOpen(event.currentTarget.open)}>
+    <details
+      ref={dropdownRef}
+      className="language-dropdown"
+      open={open}
+      onToggle={(event) => setOpen(event.currentTarget.open)}
+    >
       <summary
         aria-label="Select language"
         onClick={(event) => {
@@ -37,8 +56,8 @@ export function LanguageDropdown({ locale }: { locale: Locale }) {
         }}
       >
         <span className="language-dropdown__globe" aria-hidden="true" />
-        <span>{locale.toUpperCase()}</span>
-        <span className="language-dropdown__chevron" aria-hidden="true" />
+        <span className="language-dropdown__current" aria-hidden="true">{locale.toUpperCase()}</span>
+        <span className="visually-hidden">Current language: {locale.toUpperCase()}</span>
       </summary>
       <div className="language-dropdown__menu">
         {locales.map((item) => (
@@ -51,7 +70,7 @@ export function LanguageDropdown({ locale }: { locale: Locale }) {
             onClick={() => setLocale(item)}
           >
             <span>{item.toUpperCase()}</span>
-            <small>{languageLabels[item]}</small>
+            <small className="visually-hidden">{languageLabels[item]}</small>
           </button>
         ))}
       </div>

@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { AudioPlayer } from "@/components/audio/AudioPlayer";
+import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { projects } from "@/lib/data";
-import { localizePath, type Locale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 export function PortfolioProjectList({ locale }: { locale: Locale }) {
   const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
@@ -52,12 +52,12 @@ export function PortfolioProjectList({ locale }: { locale: Locale }) {
                 <p>{project.summary[locale]}</p>
                 <AudioPlayer src={project.audioUrl} duration={project.duration} labels={audioLabels} />
               </div>
-              <span className="portfolio-showcase__year">{project.year}</span>
+              {/* <span className="portfolio-showcase__year">{project.year}</span> */}
             </article>
           );
         })}
         <div className="portfolio-showcase__cta">
-          <Link href={localizePath(locale, "/order")}>{orderLabel} <span>↗</span></Link>
+          <RequestModalButton locale={locale} serviceId="service">{orderLabel} <span>↗</span></RequestModalButton>
         </div>
       </div>
 

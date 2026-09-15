@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/home/layout/Footer";
+import { Header } from "@/components/home/layout/Header";
 import { getCurrentLocale } from "@/lib/current-locale";
 import { getDictionary } from "@/lib/i18n";
 import "./globals.scss";

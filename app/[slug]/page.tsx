@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AudioPlayer } from "@/components/audio/AudioPlayer";
+import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { getCurrentLocale } from "@/lib/current-locale";
@@ -70,9 +71,9 @@ export default async function WorkCasePage({
               <div className="case-page__hero-audio">
                 <AudioPlayer src={project.audioUrl} duration={project.duration} labels={{ play: t.common.play, pause: t.common.pause }} />
               </div>
-              <Link className="case-page__order" href={localizePath(locale, "/order")}>
+              <RequestModalButton className="case-page__order" locale={locale} serviceId="guide">
                 {t.case.orderAudioGuide}
-              </Link>
+              </RequestModalButton>
             </div>
           </header>
 

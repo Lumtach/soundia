@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Container } from "@/components/ui/Container";
 import { pricingCards as prices } from "@/lib/pricing";
 import type { Locale } from "@/lib/i18n";
@@ -68,9 +68,9 @@ export function PricingSection({
                   <strong>{item.price}</strong>
                 </div>
               </div>
-              <Link className="price-item__order" href={`/order?service=${item.id}#order`}>
+              <RequestModalButton className="price-item__order" locale={locale} serviceId={item.id}>
                 {labels.order} <span aria-hidden="true">↗</span>
-              </Link>
+              </RequestModalButton>
             </article>
           ))}
         </div>

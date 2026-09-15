@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { ArSoundField } from "@/components/home/ArSoundField";
 import { Container } from "@/components/ui/Container";
-import type { Locale } from "@/lib/i18n";
+import { localizePath, type Locale } from "@/lib/i18n";
 
 export function HeroSection({
   locale,
@@ -21,12 +22,16 @@ export function HeroSection({
               </span>
             ))}
           </h1>
-          <ArSoundField />
-          <div className="hero__meta">
+          <ul className="hero__meta" aria-label="Soundia services">
             {copy.meta.map((item) => (
-              <span key={item}>{item}</span>
+              <li key={item}>{item}</li>
             ))}
-          </div>
+          </ul>
+          <Link className="hero__cta" href={localizePath(locale, "/portfolio")}>
+            Послушать наши работы
+            <span aria-hidden="true">→</span>
+          </Link>
+          <ArSoundField />
           <span className="hero__scroll">{copy.scroll}</span>
         </div>
       </Container>

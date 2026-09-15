@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AudioPlayer } from "@/components/audio/AudioPlayer";
+import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { getCurrentLocale } from "@/lib/current-locale";
@@ -48,6 +49,7 @@ export default async function ServicePage({
   const locale = await getCurrentLocale();
   const service = services.find((item) => item.href.endsWith(slug));
   const t = await getDictionary(locale);
+  const allServicesLabel = locale === "ru" ? "Все услуги" : locale === "lv" ? "Visi pakalpojumi" : "All services";
 
   if (!service) notFound();
 
@@ -56,10 +58,13 @@ export default async function ServicePage({
       <Container>
         <article>
           <div className="service-page__top">
+            <Link className="service-page__back" href="/services">
+              <span aria-hidden="true">←</span>
+              <span className="visually-hidden">{allServicesLabel}</span>
+            </Link>
             <SectionLabel>
               {service.number} / {service.meta[locale]}
             </SectionLabel>
-            <Link href="/services">{t.nav.services}</Link>
           </div>
 
           <div className="service-page__split">
@@ -91,8 +96,8 @@ export default async function ServicePage({
                   </ol>
                 </div>
                 <div className="service-page__cta">
-                  <p>{locale === "ru" ? "Можно заказать готовый пакет или настроить услугу под ваш проект." : locale === "lv" ? "Varat pasūtīt gatavu paketi vai pielāgot pakalpojumu savam projektam." : "You can order a ready package or adapt the service to your project."}</p>
-                  <Link href="/order">{service.orderLabel[locale]}</Link>
+                  <p>{locale === "ru" ? "Оставьте заявку, и мы обсудим формат под ваш проект." : locale === "lv" ? "Atstājiet pieprasījumu, un mēs apspriedīsim formātu jūsu projektam." : "Send a request and we will shape the format around your project."}</p>
+                  <RequestModalButton locale={locale} serviceId={service.id}>{service.orderLabel[locale]}</RequestModalButton>
                 </div>
               </section>
             </div>

@@ -4,8 +4,8 @@ import { Container } from "@/components/ui/Container";
 import { getCurrentLocale } from "@/lib/current-locale";
 
 export const metadata: Metadata = {
-  title: "Форма заказа аудиогида - Soundia",
-  description: "Динамическая форма заказа аудиогида с настройками по каждому слоту."
+  title: "Заявка - Soundia",
+  description: "Контактная форма заявки на услуги Soundia."
 };
 
 export default async function OrderPage({

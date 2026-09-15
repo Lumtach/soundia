@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { contacts } from "@/lib/data";
 import { localizePath, type Locale } from "@/lib/i18n";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa6";
@@ -24,18 +25,7 @@ export function Footer({
       <div className="footer__inner">
         <div className="footer__columns">
           <div className="footer__brand" aria-label="Soundia Creative Studio">
-            <span className="footer__mark" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-            </span>
-            <span className="footer__wordmark">
-              <strong>Soundia</strong>
-              <small>Creative Studio</small>
-            </span>
+            <Image className="footer__logo" src="/logo.png" alt="Soundia Creative Studio" width={205} height={95} />
           </div>
 
           <nav className="footer__nav" aria-label="Footer navigation">
