@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ArSoundField } from "@/components/home/ArSoundField";
 import { Container } from "@/components/ui/Container";
+import { ButtonLink } from "@/components/ui/Button";
 import { localizePath, type Locale } from "@/lib/i18n";
 
 export function HeroSection({
@@ -27,10 +27,10 @@ export function HeroSection({
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <Link className="hero__cta" href={localizePath(locale, "/portfolio")}>
+          <ButtonLink className="hero__cta" href={localizePath(locale, "/portfolio")}>
             Послушать наши работы
             <span aria-hidden="true">→</span>
-          </Link>
+          </ButtonLink>
           <ArSoundField />
           <span className="hero__scroll">{copy.scroll}</span>
         </div>

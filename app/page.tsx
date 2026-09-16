@@ -14,11 +14,6 @@ export default async function HomePage() {
   return (
     <main className="home-page">
       <HeroSection locale={locale} copy={t.home.hero} />
-      {/* <SoundExperience copy={t.home.soundExperience} /> */}
-      {/* <AboutSection copy={t.home.about} /> */}
-      {/* <ProcessSection copy={t.home.process} /> */}
-      {/* <CoursesTeaser locale={locale} copy={t.home.courses} common={t.common} /> */}
-      {/* <FAQSection copy={t.home.faq} /> */}
     </main>
   );
 }

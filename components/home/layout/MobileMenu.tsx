@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
@@ -27,8 +28,10 @@ export function MobileMenu({
   nav: Record<string, string>;
 }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const panelRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const isHomePage = pathname === localizePath(locale);
 
   useEffect(() => {
     if (!open) return;
@@ -84,11 +87,13 @@ export function MobileMenu({
                   ["work", localizePath(locale, "/portfolio")],
                   ["pricing", localizePath(locale, "/pricing")],
                   ["courses", localizePath(locale, "/courses")],
-                ].map(([key, href]) => (
-                  <Link key={key} href={href} onClick={() => setOpen(false)}>
-                    {key === "home" ? homeLabels[locale] : nav[key]}
-                  </Link>
-                ))}
+                ]
+                  .filter(([key]) => !(key === "home" && isHomePage))
+                  .map(([key, href]) => (
+                    <Link key={key} href={href} onClick={() => setOpen(false)}>
+                      {key === "home" ? homeLabels[locale] : nav[key]}
+                    </Link>
+                  ))}
               </nav>
 
               <address className="mobile-menu__contacts">

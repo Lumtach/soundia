@@ -12,6 +12,14 @@ export function PortfolioProjectList({ locale }: { locale: Locale }) {
   const activeProject = projects.find((project) => project.id === activeProjectId) ?? projects[0];
   const audioLabels = locale === "ru" ? { play: "Воспроизвести фрагмент", pause: "Пауза" } : locale === "lv" ? { play: "Atskaņot fragmentu", pause: "Pauze" } : { play: "Play preview", pause: "Pause" };
   const orderLabel = locale === "ru" ? "Заказать услугу" : locale === "lv" ? "Pasūtīt pakalpojumu" : "Order a service";
+  const getProjectType = (category: string) => category.split("·")[0].trim();
+  const fallbackAudioUrl = "https://soundia.zenith.lv/audio/constantinople-preview.mp3";
+  const fallbackDuration = "00:38";
+  const getPortfolioSummary = (summary: string) =>
+    summary
+      .replace("маршрута в Istanbul:", "маршрута:")
+      .replace("maršrutam Istanbulā:", "maršrutam:")
+      .replace("in Istanbul where", "where");
 
   useEffect(() => {
     const projectRows = document.querySelectorAll<HTMLElement>("[data-portfolio-project]");
@@ -35,7 +43,7 @@ export function PortfolioProjectList({ locale }: { locale: Locale }) {
   return (
     <div className="portfolio-showcase">
       <div className="portfolio-showcase__list" aria-label="Projects">
-        <p className="portfolio-showcase__label">{locale === "ru" ? "Все проекты" : locale === "lv" ? "Visi projekti" : "All projects"}</p>
+        <p className="portfolio-showcase__label">{locale === "ru" ? "Наши проекты" : locale === "lv" ? "Mūsu projekti" : "Our projects"}</p>
         {projects.map((project) => {
           const isActive = project.id === activeProject.id;
 
@@ -45,12 +53,12 @@ export function PortfolioProjectList({ locale }: { locale: Locale }) {
               key={project.id}
               data-portfolio-project={project.id}
             >
-              <span className="portfolio-showcase__number">{project.number}</span>
+              <span className="portfolio-showcase__number"></span>
               <div className="portfolio-showcase__copy">
                 <strong>{project.title[locale]}</strong>
-                <span>{project.category[locale]}</span>
-                <p>{project.summary[locale]}</p>
-                <AudioPlayer src={project.audioUrl} duration={project.duration} labels={audioLabels} />
+                <span>{getProjectType(project.category[locale])}</span>
+                <p>{getPortfolioSummary(project.summary[locale])}</p>
+                <AudioPlayer src={project.audioUrl ?? fallbackAudioUrl} duration={project.duration ?? fallbackDuration} labels={audioLabels} />
               </div>
               {/* <span className="portfolio-showcase__year">{project.year}</span> */}
             </article>
@@ -71,10 +79,6 @@ export function PortfolioProjectList({ locale }: { locale: Locale }) {
           unoptimized
         />
         <div className="portfolio-showcase__overlay" />
-        <div className="portfolio-showcase__caption">
-          <span>{activeProject.category[locale]}</span>
-          <strong>{activeProject.location}</strong>
-        </div>
       </aside>
     </div>
   );

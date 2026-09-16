@@ -3,6 +3,7 @@ import { Footer } from "@/components/home/layout/Footer";
 import { Header } from "@/components/home/layout/Header";
 import { getCurrentLocale } from "@/lib/current-locale";
 import { getDictionary } from "@/lib/i18n";
+import "./tailwind.css";
 import "./globals.scss";
 
 export async function generateMetadata(): Promise<Metadata> {
