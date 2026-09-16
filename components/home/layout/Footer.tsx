@@ -2,14 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { contacts } from "@/lib/data";
 import { localizePath, type Locale } from "@/lib/i18n";
-import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa6";
-import { JSX } from "react/jsx-runtime";
-
-const socialIcons: Record<string, JSX.Element> = {
-  Instagram:  <FaInstagram />,
-  Facebook: <FaFacebook />,
-  LinkedIn: <FaLinkedin />
-};
+import { SocialLinks } from "./SocialLinks";
 
 export function Footer({
   locale,
@@ -48,13 +41,7 @@ export function Footer({
 
         <div className="footer__bottom">
           <p>{footer.copyright}</p>
-          <div className="footer__socials" aria-label="Social links">
-            {contacts.socials.map((social) => (
-              <a key={social} href="#" aria-label={social}>
-                <span aria-hidden="true">{socialIcons[social] ?? social.slice(0, 2)}</span>
-              </a>
-            ))}
-          </div>
+          <SocialLinks className="footer__socials" />
         </div>
       </div>
     </footer>

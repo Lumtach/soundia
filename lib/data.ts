@@ -33,6 +33,13 @@ export type Service = {
   href: string;
 };
 
+export type SocialLabel = "Instagram" | "Facebook" | "LinkedIn";
+
+export type SocialLink = {
+  label: SocialLabel;
+  href: string;
+};
+
 export const projects: Project[] = [
   {
     id: "constantinople",
@@ -256,5 +263,18 @@ export const contacts = {
   phone: "+371 29 000 000",
   messaging: "WhatsApp / Telegram",
   address: "Riga, Latvia",
-  socials: ["Instagram", "Facebook", "LinkedIn"]
+  socials: [
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/soundia.lv"
+    },
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/soundia.lv"
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/soundia-lv"
+    }
+  ] satisfies SocialLink[]
 };

@@ -2,17 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { contacts } from "@/lib/data";
 import { localizePath, type Locale } from "@/lib/i18n";
-
-const socialIcons: Record<string, ReactNode> = {
-  Instagram: <FaInstagram />,
-  Facebook: <FaFacebookF />,
-  LinkedIn: <FaLinkedinIn />
-};
+import { SocialLinks } from "./SocialLinks";
 
 const homeLabels: Record<Locale, string> = {
   ru: "Главная",
@@ -104,13 +97,7 @@ export function MobileMenu({
                 <span>{contacts.address}</span>
               </address>
 
-              <div className="mobile-menu__socials" aria-label="Social links">
-                {contacts.socials.map((social) => (
-                  <a key={social} href="#" aria-label={social}>
-                    <span aria-hidden="true">{socialIcons[social] ?? social.slice(0, 2)}</span>
-                  </a>
-                ))}
-              </div>
+              <SocialLinks className="mobile-menu__socials" />
             </div>
           </aside>
         </div>

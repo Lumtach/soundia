@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import { ArSoundField } from "@/components/home/ArSoundField";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
@@ -8,7 +9,7 @@ export function HeroSection({
   copy
 }: {
   locale: Locale;
-  copy: { eyebrow: string; headline: string[]; meta: string[]; scroll: string };
+  copy: { eyebrow: string; headline: string[]; meta: string[]; cta: string; scroll: string };
 }) {
   return (
     <section className="hero" aria-labelledby="hero-title">
@@ -27,9 +28,8 @@ export function HeroSection({
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <ButtonLink className="hero__cta" href={localizePath(locale, "/portfolio")}>
-            Послушать наши работы
-            <span aria-hidden="true">→</span>
+          <ButtonLink className="hero__cta" href={localizePath(locale, "/portfolio")} size="lg" arrow={<ArrowRight size={14} strokeWidth={1.8} />} arrowPosition="start">
+            {copy.cta}
           </ButtonLink>
           <ArSoundField />
           <span className="hero__scroll">{copy.scroll}</span>

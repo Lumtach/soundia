@@ -4035,27 +4035,14 @@ body:has(.home-page) .footer { display: none; }
   grid-column: 1 / 4;
   grid-row: 5;
   align-self: start;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  min-width: min(100%, 306px);
-  min-height: 61px;
   margin-top: 32px;
-  padding: 0 38px;
   border: 1px solid rgba(66, 116, 169, .78);
-  border-radius: 999px;
   background: transparent;
   color: #4274a9;
-  font-size: 24px;
   font-weight: 800;
   letter-spacing: 0;
-  line-height: 1;
   text-transform: none;
   transition: border-color .28s ease, background .28s ease, color .28s ease, transform .28s ease;
-}
-
-.hero__cta span {
-  display: none;
 }
 
 .hero__cta:hover {
@@ -6556,12 +6543,15 @@ body:has(.pricing-page) .footer {
 
 .mobile-menu__content {
   display: grid;
-  align-content: start;
+  min-height: 0;
+  grid-template-rows: auto minmax(24px, 1fr) auto auto;
+  align-content: stretch;
   gap: clamp(28px, 6vh, 54px);
   padding: clamp(28px, 6vh, 58px) clamp(42px, 11vw, 136px) 42px;
 }
 
 .mobile-menu__nav {
+  grid-row: 1;
   display: grid;
   gap: clamp(28px, 7vh, 58px);
 }
@@ -6583,6 +6573,7 @@ body:has(.pricing-page) .footer {
 }
 
 .mobile-menu__contacts {
+  grid-row: 3;
   display: grid;
   gap: 15px;
   color: rgba(209, 226, 245, .9);
@@ -6603,6 +6594,7 @@ body:has(.pricing-page) .footer {
 }
 
 .mobile-menu__socials {
+  grid-row: 4;
   display: flex;
   gap: 22px;
 }

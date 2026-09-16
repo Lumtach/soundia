@@ -4,12 +4,14 @@ import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
 type ButtonVariant = "filled" | "outline";
-type ButtonSize = "sm" | "md" | "lg";
+type ButtonSize = "sm" | "md" | "lg" | "xl";
+type ButtonArrowPosition = "start" | "end";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   arrow?: ReactNode;
+  arrowPosition?: ButtonArrowPosition;
   arrowClassName?: string;
   children: ReactNode;
 }
@@ -19,6 +21,7 @@ interface ButtonLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   arrow?: ReactNode;
+  arrowPosition?: ButtonArrowPosition;
   arrowClassName?: string;
   children: ReactNode;
 }
@@ -31,7 +34,8 @@ const variantStyles: Record<ButtonVariant, string> = {
 const sizeStyles: Record<ButtonSize, string> = {
   sm: "min-h-10 px-4 py-2 text-[11px]",
   md: "min-h-12 px-[22px] py-[13px] text-xs",
-  lg: "min-h-14 px-7 py-4 text-[13px]"
+  lg: "min-h-14 px-7 py-4 text-[13px]",
+  xl: "min-h-[61px] min-w-[min(100%,306px)] px-[38px] py-0 text-2xl"
 };
 
 function getButtonClassName({
@@ -51,6 +55,7 @@ export function Button({
   size = "md",
   className = "",
   arrow,
+  arrowPosition = "start",
   arrowClassName = "",
   disabled,
   children,
@@ -59,12 +64,17 @@ export function Button({
 }: ButtonProps) {
   return (
     <button className={getButtonClassName({ variant, size, className })} disabled={disabled} type={type} {...props}>
-      {arrow ? (
+      {arrow && arrowPosition === "start" ? (
         <span className={`button-arrow ${arrowClassName}`} aria-hidden="true">
           {arrow}
         </span>
       ) : null}
       {children}
+      {arrow && arrowPosition === "end" ? (
+        <span className={`button-arrow ${arrowClassName}`} aria-hidden="true">
+          {arrow}
+        </span>
+      ) : null}
     </button>
   );
 }
@@ -74,6 +84,7 @@ export function ButtonLink({
   size = "md",
   className = "",
   arrow,
+  arrowPosition = "start",
   arrowClassName = "",
   children,
   href,
@@ -81,12 +92,17 @@ export function ButtonLink({
 }: ButtonLinkProps) {
   return (
     <Link href={href} className={getButtonClassName({ variant, size, className })} {...props}>
-      {arrow ? (
+      {arrow && arrowPosition === "start" ? (
         <span className={`button-arrow ${arrowClassName}`} aria-hidden="true">
           {arrow}
         </span>
       ) : null}
       {children}
+      {arrow && arrowPosition === "end" ? (
+        <span className={`button-arrow ${arrowClassName}`} aria-hidden="true">
+          {arrow}
+        </span>
+      ) : null}
     </Link>
   );
 }
