@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Container } from "@/components/ui/Container";
-import { coursePageCopy, courses } from "@/lib/courses";
+import { coursePageCopy, courses } from "./[slug]/data";
 import { getCurrentLocale } from "@/lib/current-locale";
 
 export default async function CoursesPage() {

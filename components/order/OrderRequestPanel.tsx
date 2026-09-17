@@ -1,6 +1,7 @@
 "use client";
 
 import type { Locale } from "@/lib/i18n";
+import { contacts } from "@/lib/data";
 
 type ServiceCopy = {
   title: Record<Locale, string>;
@@ -108,7 +109,7 @@ export function OrderRequestPanel({
         <p>{t.intro}</p>
       </div>
 
-      <form className="order-modal__form" action={`mailto:info@soundia.lv?subject=${encodeURIComponent(service.title[locale])}&body=${encodeURIComponent(requestBody)}`} method="post" encType="text/plain">
+      <form className="order-modal__form" action={`mailto:${contacts.email}?subject=${encodeURIComponent(service.title[locale])}&body=${encodeURIComponent(requestBody)}`} method="post" encType="text/plain">
         <label>
           <span>{t.name}</span>
           <input name="name" required />

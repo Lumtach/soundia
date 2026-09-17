@@ -2,7 +2,7 @@ import Image from "next/image";
 import { AudioPlayer } from "@/components/audio/AudioPlayer";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { projects } from "@/lib/data";
+import { projects } from "@/app/portfolio/data";
 import { localizePath, type Locale } from "@/lib/i18n";
 
 export function SelectedWork({

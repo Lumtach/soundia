@@ -25,8 +25,8 @@ export function Footer({
             <Link href={localizePath(locale, "/portfolio")}>{nav.work}</Link>
             <Link href={localizePath(locale, "/services")}>{nav.services}</Link>
             <Link href={localizePath(locale, "/pricing")}>{nav.pricing}</Link>
-            <Link href="/#about">{nav.about}</Link>
-            <Link href="/#courses">{nav.courses}</Link>
+            <Link href={localizePath(locale, "/about-company")}>{nav.about}</Link>
+            <Link href={localizePath(locale, "/courses")}>{nav.courses}</Link>
           </nav>
 
           <div className="footer__contact-column">

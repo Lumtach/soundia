@@ -7,7 +7,7 @@ import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { getCurrentLocale } from "@/lib/current-locale";
-import { projects } from "@/lib/data";
+import { projects } from "../portfolio/data";
 import { getDictionary, localizePath } from "@/lib/i18n";
 
 export function generateStaticParams() {

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AudioPlayer } from "@/components/audio/AudioPlayer";
 import { RequestModalButton } from "@/components/order/RequestModalButton";
-import { projects } from "@/lib/data";
+import { projects } from "@/app/portfolio/data";
 import type { Locale } from "@/lib/i18n";
 
 export function PortfolioProjectList({ locale }: { locale: Locale }) {
@@ -13,8 +13,6 @@ export function PortfolioProjectList({ locale }: { locale: Locale }) {
   const audioLabels = locale === "ru" ? { play: "Воспроизвести фрагмент", pause: "Пауза" } : locale === "lv" ? { play: "Atskaņot fragmentu", pause: "Pauze" } : { play: "Play preview", pause: "Pause" };
   const orderLabel = locale === "ru" ? "Заказать услугу" : locale === "lv" ? "Pasūtīt pakalpojumu" : "Order a service";
   const getProjectType = (category: string) => category.split("·")[0].trim();
-  const fallbackAudioUrl = "https://soundia.zenith.lv/audio/constantinople-preview.mp3";
-  const fallbackDuration = "00:38";
   const getPortfolioSummary = (summary: string) =>
     summary
       .replace("маршрута в Istanbul:", "маршрута:")
@@ -58,7 +56,7 @@ export function PortfolioProjectList({ locale }: { locale: Locale }) {
                 <strong>{project.title[locale]}</strong>
                 <span>{getProjectType(project.category[locale])}</span>
                 <p>{getPortfolioSummary(project.summary[locale])}</p>
-                <AudioPlayer src={project.audioUrl ?? fallbackAudioUrl} duration={project.duration ?? fallbackDuration} labels={audioLabels} />
+                <AudioPlayer src={project.audioUrl} duration={project.duration} labels={audioLabels} />
               </div>
               {/* <span className="portfolio-showcase__year">{project.year}</span> */}
             </article>

@@ -75,7 +75,7 @@ export function MobileMenu({
               <nav className="mobile-menu__nav" aria-label="Mobile navigation">
                 {[
                   ["home", localizePath(locale)],
-                  ["about", "/#about"],
+                  ["about", localizePath(locale, "/about-company")],
                   ["services", localizePath(locale, "/services")],
                   ["work", localizePath(locale, "/portfolio")],
                   ["pricing", localizePath(locale, "/pricing")],

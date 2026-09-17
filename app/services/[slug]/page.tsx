@@ -6,7 +6,7 @@ import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { getCurrentLocale } from "@/lib/current-locale";
-import { services } from "@/lib/data";
+import { services } from "./data";
 
 export function generateStaticParams() {
   return services.map((service) => ({

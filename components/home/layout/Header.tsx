@@ -29,7 +29,7 @@ export function Header({
   return (
     <header className={`site-header${scrolled ? " site-header--scrolled" : ""}`}>
       <Link className="site-header__brand" href={localizePath(locale)}>
-        <Image className="site-header__logo" src="/logo.png" alt="Soundia Creative Studio" width={255} height={100} priority />
+        <Image className="site-header__logo" src="/logo.svg" alt="Soundia Creative Studio" width={255} height={100} priority />
       </Link>
       <div className="site-header__right">
         <GlobalAudioToggle />

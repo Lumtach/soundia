@@ -41,9 +41,6 @@ export function PricingSection({
           {prices.map((item, index) => (
             <article key={item.id} className={`price-item ${index === 1 ? "price-item--featured" : ""}`}>
               <div className="price-item__head">
-                <span className="price-item__number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
                 <div className="price-item__signal" aria-hidden="true">
                   {ticks.map((_, tickIndex) => (
                     <i key={tickIndex} />

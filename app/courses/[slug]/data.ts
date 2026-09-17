@@ -1,4 +1,4 @@
-import type { Locale } from "./i18n";
+import type { Locale } from "@/lib/i18n";
 
 type Localized<T> = Record<Locale, T>;
 
@@ -58,7 +58,7 @@ export const courses = [
     slug: "sound-design",
     title: {
       ru: "Основы звукового дизайна и аудиопостобработки",
-      lv: "Skaņas dizaina un audiopēcapstrādes pamati",
+      lv: "Skaņas dizaina pamati un audio pēcapstrāde",
       en: "Sound Design and Audio Post-Production Basics"
     },
     meta: {
@@ -120,6 +120,99 @@ export const courses = [
       ru: "К концу курса вы самостоятельно создадите законченный аудиопроект и получите свидетельство о прохождении программы.",
       lv: "Kursa beigās jūs patstāvīgi izveidosiet gatavu audioprojektu un saņemsiet apliecību par programmas apguvi.",
       en: "By the end, you will create a finished audio project and receive a certificate of completion."
+    },
+    syllabus: {
+      eyebrow: {
+        ru: "Цель программы",
+        lv: "Programmas mērķis",
+        en: "Program goal"
+      },
+      title: {
+        ru: "Практическая программа по саунд-дизайну, записи, монтажу, реставрации, сведению и подготовке финального материала.",
+        lv: "Praktiska programma darbam ar skaņas dizainu, ierakstu, montāžu, restaurāciju, miksēšanu un gala materiāla sagatavošanu.",
+        en: "A practical program for sound design, recording, editing, restoration, mixing and final audio material preparation."
+      },
+      intro: {
+        ru: [
+          "Программа рассчитана на участников без предыдущего профессионального опыта. Нужны базовые навыки работы с компьютером.",
+          "Обучение проходит очно на латышском языке; по договорённости возможны также русский или английский язык. В практической работе участник осваивает полный цикл аудиопостобработки и разрабатывает свой проект."
+        ],
+        lv: [
+          "Programma paredzēta interesentiem bez iepriekšējas profesionālās pieredzes. Nepieciešamas datora lietošanas pamatprasmes.",
+          "Mācības notiek klātienē latviešu valodā; pēc vienošanās iespējamas arī krievu vai angļu valodā. Praktiskajā darbā dalībnieks apgūst pilnu skaņas pēcapstrādes plūsmu un noslēgumā izstrādā savu projektu."
+        ],
+        en: [
+          "The program is designed for participants without previous professional experience. Basic computer skills are required.",
+          "Classes take place in person in Latvian; Russian or English can be arranged by agreement. Through practical work, participants learn the full audio post-production flow and develop their own final project."
+        ]
+      },
+      modulesEyebrow: {
+        ru: "Что освоите",
+        lv: "Ko apgūsiet",
+        en: "What you will learn"
+      },
+      modules: {
+        ru: [
+          "Введение в саунд-дизайн и работу с DAW",
+          "Монтаж и редактирование аудиоматериала",
+          "Основы записи звука",
+          "Аудиоэффекты и обработка сигнала",
+          "Практическое создание звуковых эффектов",
+          "Основы сведения",
+          "Полевые записи",
+          "Аудиореставрация и мастеринг",
+          "Финальный проект и оценивание"
+        ],
+        lv: [
+          "Ievads skaņas dizainā un darbs ar DAW",
+          "Audio materiāla montāža un rediģēšana",
+          "Skaņas ieraksta pamati",
+          "Audio efekti un signāla apstrāde",
+          "Praktiska skaņas efektu veidošana",
+          "Miksēšanas pamati",
+          "Lauka ieraksts",
+          "Audio restaurācija un māsterings",
+          "Noslēguma projekts un vērtēšana"
+        ],
+        en: [
+          "Introduction to sound design and DAW workflow",
+          "Audio material editing and arrangement",
+          "Sound recording basics",
+          "Audio effects and signal processing",
+          "Practical sound effect creation",
+          "Mixing basics",
+          "Field recording",
+          "Audio restoration and mastering",
+          "Final project and assessment"
+        ]
+      },
+      volumeEyebrow: {
+        ru: "Объём программы",
+        lv: "Programmas apjoms",
+        en: "Program volume"
+      },
+      hours: {
+        ru: [
+          ["Теория", "16 ч"],
+          ["Практика", "48 ч"],
+          ["Оценивание", "8 ч"]
+        ],
+        lv: [
+          ["teorija", "16 h"],
+          ["prakse", "48 h"],
+          ["vērtēšana", "8 h"]
+        ],
+        en: [
+          ["Theory", "16 h"],
+          ["Practice", "48 h"],
+          ["Assessment", "8 h"]
+        ]
+      },
+      total: {
+        ru: ["Всего", "72 ч"],
+        lv: ["Kopā", "72 h"],
+        en: ["Total", "72 h"]
+      }
     }
   },
   {
@@ -188,13 +281,91 @@ export const courses = [
       ru: "В конце курса вы создадите голосовой проект: фрагмент подкаста, интервью или voice-over.",
       lv: "Kursa beigās jūs izveidosiet balss projektu: podkāsta fragmentu, interviju vai voice-over.",
       en: "By the end, you will create a voice project: a podcast segment, interview or voice-over."
+    },
+    syllabus: {
+      eyebrow: {
+        ru: "Цель программы",
+        lv: "Programmas mērķis",
+        en: "Program goal"
+      },
+      title: {
+        ru: "Сфокусированный практический курс по качественной записи голоса, обработке и подготовке финального материала.",
+        lv: "Koncentrēts praktisks kurss kvalitatīvam balss ierakstam, apstrādei un gala materiāla sagatavošanai.",
+        en: "A focused practical course for quality voice recording, processing and final material preparation."
+      },
+      intro: {
+        ru: [
+          "Программа помогает освоить техническую подготовку записи голоса, работу с DAW, обработку речи и продюсирование записи до готового результата.",
+          "Обучение проходит очно на латышском языке; по договорённости возможны также русский или английский язык."
+        ],
+        lv: [
+          "Programma palīdz apgūt balss ieraksta tehnisko sagatavošanu, darbu ar DAW, balss apstrādes rīkiem un ieraksta producēšanu līdz gatavam rezultātam.",
+          "Mācības notiek klātienē latviešu valodā; pēc vienošanās iespējamas arī krievu vai angļu valodā."
+        ],
+        en: [
+          "The program helps you learn technical preparation for voice recording, DAW workflows, voice processing tools and recording production through to a finished result.",
+          "Classes take place in person in Latvian; Russian or English can be arranged by agreement."
+        ]
+      },
+      modulesEyebrow: {
+        ru: "Что освоите",
+        lv: "Ko apgūsiet",
+        en: "What you will learn"
+      },
+      modules: {
+        ru: [
+          "Введение в аудиопостобработку и работу с DAW",
+          "Эффекты обработки голоса и их практическое применение",
+          "Подготовка и проведение записи голоса",
+          "Продюсирование записи, финальная обработка и оценивание"
+        ],
+        lv: [
+          "Ievads audio pēcapstrādē un darbs ar DAW",
+          "Balss apstrādes efekti un to praktiska izmantošana",
+          "Balss ieraksta sagatavošana un veikšana",
+          "Ieraksta producēšana, gala apstrāde un vērtēšana"
+        ],
+        en: [
+          "Introduction to audio post-production and DAW workflow",
+          "Voice processing effects and practical use",
+          "Voice recording preparation and performance",
+          "Recording production, final processing and assessment"
+        ]
+      },
+      volumeEyebrow: {
+        ru: "Объём программы",
+        lv: "Programmas apjoms",
+        en: "Program volume"
+      },
+      hours: {
+        ru: [
+          ["Теория", "8 ч"],
+          ["Практика", "12 ч"],
+          ["Оценивание", "4 ч"]
+        ],
+        lv: [
+          ["teorija", "8 h"],
+          ["prakse", "12 h"],
+          ["vērtēšana", "4 h"]
+        ],
+        en: [
+          ["Theory", "8 h"],
+          ["Practice", "12 h"],
+          ["Assessment", "4 h"]
+        ]
+      },
+      total: {
+        ru: ["Всего", "24 ч"],
+        lv: ["Kopā", "24 h"],
+        en: ["Total", "24 h"]
+      }
     }
   },
   {
     slug: "music-production",
     title: {
       ru: "Аудиопродакшн и постобработка музыки",
-      lv: "Audioprodukcija un mūzikas pēcapstrāde",
+      lv: "Audio producēšana un mūzikas pēcapstrāde (padziļināts kurss)",
       en: "Audio Production and Music Post-Production"
     },
     meta: {
@@ -256,6 +427,99 @@ export const courses = [
       ru: "Во время курса вы создадите проект полного цикла: от идеи и записи до готового микса и мастера.",
       lv: "Kursa laikā jūs izveidosiet pilna cikla projektu: no idejas un ieraksta līdz gatavam miksam un māsteram.",
       en: "During the course, you will create a full-cycle project: from idea and recording to a finished mix and master."
+    },
+    syllabus: {
+      eyebrow: {
+        ru: "Цель программы",
+        lv: "Programmas mērķis",
+        en: "Program goal"
+      },
+      title: {
+        ru: "Углублённая программа по музыкальному продакшну, MIDI, записи, сведению, мастерингу и разработке финального проекта.",
+        lv: "Padziļināta programma mūzikas producēšanai, MIDI, ierakstam, miksēšanai, māsteringam un noslēguma projekta izstrādei.",
+        en: "An advanced program for music production, MIDI, recording, mixing, mastering and final project development."
+      },
+      intro: {
+        ru: [
+          "Углублённый курс для участников, которые хотят системно развить навыки аудиопродакшна и музыкальной постобработки. Желательна базовая практика записи звука, работы с DAW и обработкой.",
+          "Обучение проходит очно на латышском языке; по договорённости возможны также русский или английский язык."
+        ],
+        lv: [
+          "Padziļināts kurss dalībniekiem, kuri vēlas sistemātiski attīstīt audio producēšanas un mūzikas pēcapstrādes prasmes. Vēlama pamata izpratne par skaņas apstrādi un darbu ar datoru.",
+          "Mācības notiek klātienē latviešu valodā; pēc vienošanās iespējamas arī krievu vai angļu valodā."
+        ],
+        en: [
+          "An advanced course for participants who want to systematically develop audio production and music post-production skills. Basic experience with recording, DAW workflows and processing is recommended.",
+          "Classes take place in person in Latvian; Russian or English can be arranged by agreement."
+        ]
+      },
+      modulesEyebrow: {
+        ru: "Что освоите",
+        lv: "Ko apgūsiet",
+        en: "What you will learn"
+      },
+      modules: {
+        ru: [
+          "Углублённая работа с DAW",
+          "Аудиомонтаж и редактирование",
+          "MIDI-технологии и аранжировка",
+          "Основы музыкальной теории для продюсера",
+          "Эффекты и обработка сигнала",
+          "Продюсирование записи",
+          "Сведение",
+          "Мастеринг",
+          "Финальный проект и оценивание"
+        ],
+        lv: [
+          "Padziļināts darbs ar DAW",
+          "Audio montāža un rediģēšana",
+          "MIDI tehnoloģijas un aranžēšana",
+          "Mūzikas teorijas pamati producentam",
+          "Efekti un signāla apstrāde",
+          "Ieraksta producēšana",
+          "Miksēšana",
+          "Māsterings",
+          "Noslēguma projekts un vērtēšana"
+        ],
+        en: [
+          "Advanced DAW workflow",
+          "Audio editing and arrangement",
+          "MIDI technologies and arranging",
+          "Music theory basics for producers",
+          "Effects and signal processing",
+          "Recording production",
+          "Mixing",
+          "Mastering",
+          "Final project and assessment"
+        ]
+      },
+      volumeEyebrow: {
+        ru: "Объём программы",
+        lv: "Programmas apjoms",
+        en: "Program volume"
+      },
+      hours: {
+        ru: [
+          ["Теория", "24 ч"],
+          ["Практика", "40 ч"],
+          ["Оценивание", "8 ч"]
+        ],
+        lv: [
+          ["teorija", "24 h"],
+          ["prakse", "40 h"],
+          ["vērtēšana", "8 h"]
+        ],
+        en: [
+          ["Theory", "24 h"],
+          ["Practice", "40 h"],
+          ["Assessment", "8 h"]
+        ]
+      },
+      total: {
+        ru: ["Всего", "72 ч"],
+        lv: ["Kopā", "72 h"],
+        en: ["Total", "72 h"]
+      }
     }
   }
 ];
