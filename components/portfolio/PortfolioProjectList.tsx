@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { AudioPlayer } from "@/components/audio/AudioPlayer";
+import { AudioPlayer } from "@/components/order/audio/AudioPlayer";
 import { RequestModalButton } from "@/components/order/RequestModalButton";
+import { Button } from "@/components/ui/Button";
 import type { Project } from "@/lib/data";
 import type { Locale } from "@/lib/i18n";
 
 export function PortfolioProjectList({ locale, projects }: { locale: Locale; projects: Project[] }) {
-  const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
+  const [activeProjectId, setActiveProjectId] = useState(projects[0]?.id ?? "");
   const activeProject = projects.find((project) => project.id === activeProjectId) ?? projects[0];
   const audioLabels = locale === "ru" ? { play: "Воспроизвести фрагмент", pause: "Пауза" } : locale === "lv" ? { play: "Atskaņot fragmentu", pause: "Pauze" } : { play: "Play preview", pause: "Pause" };
   const orderLabel = locale === "ru" ? "Заказать услугу" : locale === "lv" ? "Pasūtīt pakalpojumu" : "Order a service";
@@ -20,6 +21,8 @@ export function PortfolioProjectList({ locale, projects }: { locale: Locale; pro
       .replace("in Istanbul where", "where");
 
   useEffect(() => {
+    if (!projects.length) return;
+
     const projectRows = document.querySelectorAll<HTMLElement>("[data-portfolio-project]");
     const observer = new IntersectionObserver(
       (entries) => {
@@ -37,6 +40,16 @@ export function PortfolioProjectList({ locale, projects }: { locale: Locale; pro
     projectRows.forEach((row) => observer.observe(row));
     return () => observer.disconnect();
   }, [projects]);
+
+  if (!activeProject) {
+    return (
+      <div className="portfolio-showcase">
+        <div className="portfolio-showcase__list" aria-label="Projects">
+          <p className="portfolio-showcase__label">{locale === "ru" ? "Наши проекты" : locale === "lv" ? "Mūsu projekti" : "Our projects"}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="portfolio-showcase">
@@ -63,7 +76,11 @@ export function PortfolioProjectList({ locale, projects }: { locale: Locale; pro
           );
         })}
         <div className="portfolio-showcase__cta">
-          <RequestModalButton locale={locale} serviceId="service">{orderLabel} <span>↗</span></RequestModalButton>
+          <RequestModalButton locale={locale} serviceId="service">
+            <Button className="hero__cta" size="lg" withArrow arrowPosition="end">
+              {orderLabel}
+            </Button>
+          </RequestModalButton>
         </div>
       </div>
 

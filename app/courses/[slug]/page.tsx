@@ -54,7 +54,7 @@ export default async function CoursePage({
           <h1>{course.title[locale]}</h1>
           <p>{course.lead[locale]}</p>
           <RequestModalButton locale={locale} serviceId="course">
-            <Button size="md" variant="filled">
+            <Button  size="md" variant="filled">
               {copy.enrollCourse}
             </Button>
           </RequestModalButton>

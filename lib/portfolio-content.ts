@@ -27,6 +27,12 @@ function getProjectImage(project: PortfolioApiItem, fallback: Project) {
   return project.images.find((image) => image.main)?.url ?? project.images[0]?.url ?? project.headpicUrl ?? project.picUrl ?? fallback.image;
 }
 
+function getProjectImages(project: PortfolioApiItem, fallback: Project) {
+  const images = project.images.map((image) => image.url);
+  const fallbackImages = fallback.images ?? [fallback.image];
+  return images.length ? images : fallbackImages;
+}
+
 function getProjectAudio(project: PortfolioApiItem, locale: Locale) {
   return project.audios[locale]?.url ?? project.translations[locale]?.audioUrl ?? undefined;
 }
@@ -39,10 +45,17 @@ function toProject(project: PortfolioApiItem, locale: Locale, index: number): Pr
     return null;
   }
 
+  const title = translation.title.trim();
+  const short = stripHtml(translation.short);
+  const description = stripHtml(translation.description);
+  const audioUrl = getProjectAudio(project, locale);
+
+  if (!title || !description || !audioUrl) {
+    return null;
+  }
+
   const category = project.type ? portfolioTypeLabels[project.type] ?? fallback.category : fallback.category;
-  const title = translation.title || project.name;
-  const summary = stripHtml(translation.short || translation.description || fallback.summary[locale]);
-  const description = stripHtml(translation.description || translation.short || fallback.summary[locale]);
+  const summary = short || description;
 
   return {
     ...fallback,
@@ -57,7 +70,8 @@ function toProject(project: PortfolioApiItem, locale: Locale, index: number): Pr
     location: fallback.location,
     year: project.createdAt?.slice(0, 4) ?? fallback.year,
     image: getProjectImage(project, fallback),
-    audioUrl: getProjectAudio(project, locale),
+    images: getProjectImages(project, fallback),
+    audioUrl,
     href: `/${project.alias}`,
     layout: fallback.layout
   };
@@ -71,7 +85,7 @@ export async function getPortfolioProjects(locale: Locale) {
       .map((project, index) => toProject(project, locale, index))
       .filter((project): project is Project => Boolean(project));
 
-    return mappedProjects.length > 0 ? mappedProjects : staticProjects;
+    return mappedProjects;
   } catch (error) {
     console.error("Falling back to static portfolio", error);
     return staticProjects;
@@ -83,7 +97,7 @@ export async function getPortfolioProject(slug: string, locale: Locale) {
     const project = await getPortfolioItemFromDb(slug, new URLSearchParams({ lang: locale }));
     const mappedProject = project ? toProject(project, locale, 0) : null;
 
-    if (mappedProject) {
+    if (project) {
       return mappedProject;
     }
   } catch (error) {

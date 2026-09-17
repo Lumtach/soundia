@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { AudioPlayer } from "@/components/audio/AudioPlayer";
+import { AudioPlayer } from "@/components/order/audio/AudioPlayer";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { projects } from "@/app/portfolio/data";

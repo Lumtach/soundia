@@ -12,6 +12,7 @@ export type Project = {
   location: string;
   year: string;
   image: string;
+  images?: string[];
   audioUrl?: string;
   duration?: string;
   href: string;

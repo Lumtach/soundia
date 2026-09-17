@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { AudioPlayer } from "@/components/audio/AudioPlayer";
+import { AudioPlayer } from "@/components/order/audio/AudioPlayer";
 import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -56,6 +56,8 @@ export default async function WorkCasePage({
   if (!project) notFound();
   const nextProject = dbProjects[(Math.max(projectIndex, 0) + 1) % dbProjects.length] ?? project;
   const t = await getDictionary(locale);
+  const projectImages = project.images?.length ? project.images : [project.image];
+  const detailParagraphs = project.scope.map((item) => item[locale]).filter(Boolean);
 
   return (
     <main className="case-page">
@@ -72,20 +74,59 @@ export default async function WorkCasePage({
               <p className="case-page__kicker">{project.category[locale]}</p>
               <h1>{project.title[locale]}</h1>
               <p className="case-page__lead">{project.summary[locale]}</p>
+            </div>
+          </header>
+
+          <section className="case-page__body" aria-label={project.title[locale]}>
+            <div className="case-page__gallery">
+              {projectImages.map((image, index) => (
+                <figure className="case-page__media" key={`${image}-${index}`}>
+                  <Image
+                    src={image}
+                    alt={`${project.title[locale]} ${index + 1}`}
+                    width={index === 0 ? 1100 : 900}
+                    height={index === 0 ? 1400 : 900}
+                    sizes={index === 0 ? "(max-width: 900px) 100vw, 34vw" : "(max-width: 900px) 100vw, 28vw"}
+                    priority={index === 0}
+                    unoptimized
+                  />
+                </figure>
+              ))}
+            </div>
+
+            <div className="case-page__details">
+              <dl className="case-page__facts" aria-label={t.case.facts}>
+                <div>
+                  <dt>{t.case.type}</dt>
+                  <dd>{project.category[locale]}</dd>
+                </div>
+                <div>
+                  <dt>{t.case.place}</dt>
+                  <dd>{project.location}</dd>
+                </div>
+                <div>
+                  <dt>{t.case.year}</dt>
+                  <dd>{project.year}</dd>
+                </div>
+              </dl>
+
+              <div className="case-page__description">
+                {detailParagraphs.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+
               {project.audioUrl ? (
                 <div className="case-page__hero-audio">
                   <AudioPlayer src={project.audioUrl} duration={project.duration} labels={{ play: t.common.play, pause: t.common.pause }} />
                 </div>
               ) : null}
+
               <RequestModalButton className="case-page__order" locale={locale} serviceId="guide">
                 {t.case.orderAudioGuide}
               </RequestModalButton>
             </div>
-          </header>
-
-          <figure className="case-page__media">
-            <Image src={project.image} alt={project.title[locale]} width={1800} height={1100} sizes="100vw" priority unoptimized />
-          </figure>
+          </section>
 
           <Link className="case-page__next" href={localizePath(locale, nextProject.href)}>
             <span>{t.case.next}</span>

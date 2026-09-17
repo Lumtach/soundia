@@ -18,7 +18,7 @@ export function Footer({
       <div className="footer__inner">
         <div className="footer__columns">
           <div className="footer__brand" aria-label="Soundia Creative Studio">
-            <Image className="footer__logo" src="/logo.png" alt="Soundia Creative Studio" width={205} height={95} />
+            <Image className="footer__logo" src="/logo.svg" alt="Soundia Creative Studio" width={205} height={95} />
           </div>
 
           <nav className="footer__nav" aria-label="Footer navigation">

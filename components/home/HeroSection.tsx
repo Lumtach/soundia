@@ -1,7 +1,6 @@
-import { ArrowRight } from "lucide-react";
 import { ArSoundField } from "@/components/home/ArSoundField";
 import { Container } from "@/components/ui/Container";
-import { ButtonLink } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { localizePath, type Locale } from "@/lib/i18n";
 
 export function HeroSection({
@@ -28,9 +27,9 @@ export function HeroSection({
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <ButtonLink className="hero__cta" href={localizePath(locale, "/portfolio")} size="lg" arrow={<ArrowRight size={14} strokeWidth={1.8} />} arrowPosition="start">
+          <Button className="hero__cta" href={localizePath(locale, "/portfolio")} size="lg" withArrow arrowPosition="end">
             {copy.cta}
-          </ButtonLink>
+          </Button>
           <ArSoundField />
           <span className="hero__scroll">{copy.scroll}</span>
         </div>

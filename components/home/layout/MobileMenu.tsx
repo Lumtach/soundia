@@ -89,15 +89,17 @@ export function MobileMenu({
                   ))}
               </nav>
 
-              <address className="mobile-menu__contacts">
-                {/* <strong>{nav.contact}</strong> */}
-                <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
-                <a href={`tel:${contacts.phone.replace(/\s/g, "")}`}>{contacts.phone}</a>
-                <span>{contacts.messaging}</span>
-                <span>{contacts.address}</span>
-              </address>
+              <div className="mobile-menu__bottom">
+                <address className="mobile-menu__contacts">
+                  {/* <strong>{nav.contact}</strong> */}
+                  <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
+                  <a href={`tel:${contacts.phone.replace(/\s/g, "")}`}>{contacts.phone}</a>
+                  <span>{contacts.messaging}</span>
+                  <span>{contacts.address}</span>
+                </address>
 
-              <SocialLinks className="mobile-menu__socials" />
+                <SocialLinks className="mobile-menu__socials" />
+              </div>
             </div>
           </aside>
         </div>

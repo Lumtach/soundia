@@ -202,11 +202,18 @@ function normalizePortfolio(rows: PortfolioRow[], locale?: Locale | null) {
     return data;
   }
 
-  return data.map((project) => ({
-    ...project,
-    translation: project.translations[locale] ?? null,
-    audio: project.audios[locale] ?? null
-  }));
+  return data
+    .map((project) => ({
+      ...project,
+      translation: project.translations[locale] ?? null,
+      audio: project.audios[locale] ?? null
+    }))
+    .filter((project) => {
+      const translation = project.translations[locale];
+      const audioUrl = project.audios[locale]?.url ?? translation?.audioUrl;
+
+      return Boolean(translation?.title.trim() && translation.description.trim() && audioUrl);
+    });
 }
 
 function buildPortfolioQuery({ alias, locale, activeOnly }: { alias?: string; locale?: Locale | null; activeOnly: boolean }) {
