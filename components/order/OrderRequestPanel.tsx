@@ -2,6 +2,7 @@
 
 import type { Locale } from "@/lib/i18n";
 import { contacts } from "@/lib/data";
+import { Button } from "@/components/ui/Button";
 
 type ServiceCopy = {
   title: Record<Locale, string>;
@@ -126,7 +127,9 @@ export function OrderRequestPanel({
           <span>{t.comment}</span>
           <textarea name="comment" rows={4} />
         </label>
-        <button type="submit">{t.send}</button>
+          <Button  type="submit" size="md" variant="filled">
+                     {t.send}
+          </Button>
       </form>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { AudioPlayer } from "@/components/order/audio/AudioPlayer";
+import { AudioPlayer } from "@/components/audio/AudioPlayer";
 import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Button } from "@/components/ui/Button";
 import type { Project } from "@/lib/data";
