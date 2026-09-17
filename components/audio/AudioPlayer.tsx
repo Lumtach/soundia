@@ -25,19 +25,20 @@ export function AudioPlayer({
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
+  const [available, setAvailable] = useState(true);
 
   const bars = useMemo(
     () => Array.from({ length: 42 }, (_, index) => 18 + ((index * 13) % 34)),
     []
   );
 
-  if (!src) return null;
+  if (!src || !available) return null;
 
   const toggle = async () => {
     const audio = audioRef.current;
     if (!audio) return;
     if (audio.paused) {
-      await audio.play().catch(() => undefined);
+      await audio.play().catch(() => setAvailable(false));
       setPlaying(!audio.paused);
     } else {
       audio.pause();
@@ -51,13 +52,15 @@ export function AudioPlayer({
         key={src}
         ref={audioRef}
         src={src}
-        preload="none"
+        preload="metadata"
         onLoadedMetadata={(event) => {
+          setAvailable(true);
           setPlaying(false);
           setProgress(0);
           setCurrentTime(0);
           setAudioDuration(event.currentTarget.duration || 0);
         }}
+        onError={() => setAvailable(false)}
         onPause={() => setPlaying(false)}
         onTimeUpdate={(event) => {
           const audio = event.currentTarget;

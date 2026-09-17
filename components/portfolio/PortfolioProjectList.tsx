@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AudioPlayer } from "@/components/audio/AudioPlayer";
 import { RequestModalButton } from "@/components/order/RequestModalButton";
-import { projects } from "@/app/portfolio/data";
+import type { Project } from "@/lib/data";
 import type { Locale } from "@/lib/i18n";
 
-export function PortfolioProjectList({ locale }: { locale: Locale }) {
+export function PortfolioProjectList({ locale, projects }: { locale: Locale; projects: Project[] }) {
   const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
   const activeProject = projects.find((project) => project.id === activeProjectId) ?? projects[0];
   const audioLabels = locale === "ru" ? { play: "Воспроизвести фрагмент", pause: "Пауза" } : locale === "lv" ? { play: "Atskaņot fragmentu", pause: "Pauze" } : { play: "Play preview", pause: "Pause" };
@@ -36,7 +36,7 @@ export function PortfolioProjectList({ locale }: { locale: Locale }) {
 
     projectRows.forEach((row) => observer.observe(row));
     return () => observer.disconnect();
-  }, []);
+  }, [projects]);
 
   return (
     <div className="portfolio-showcase">
@@ -56,7 +56,7 @@ export function PortfolioProjectList({ locale }: { locale: Locale }) {
                 <strong>{project.title[locale]}</strong>
                 <span>{getProjectType(project.category[locale])}</span>
                 <p>{getPortfolioSummary(project.summary[locale])}</p>
-                <AudioPlayer src={project.audioUrl} duration={project.duration} labels={audioLabels} />
+                {project.audioUrl ? <AudioPlayer src={project.audioUrl} duration={project.duration} labels={audioLabels} /> : null}
               </div>
               {/* <span className="portfolio-showcase__year">{project.year}</span> */}
             </article>

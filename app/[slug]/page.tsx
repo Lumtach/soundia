@@ -8,7 +8,10 @@ import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { getCurrentLocale } from "@/lib/current-locale";
 import { projects } from "../portfolio/data";
+import { getPortfolioProject, getPortfolioProjects } from "@/lib/portfolio-content";
 import { getDictionary, localizePath } from "@/lib/i18n";
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -23,7 +26,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const locale = await getCurrentLocale();
-  const project = projects.find((item) => item.href.endsWith(slug));
+  const project = await getPortfolioProject(slug, locale);
 
   if (!project) {
     return {};
@@ -46,11 +49,12 @@ export default async function WorkCasePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const projectIndex = projects.findIndex((item) => item.href.endsWith(slug));
-  const project = projects[projectIndex];
-  if (!project) notFound();
-  const nextProject = projects[(projectIndex + 1) % projects.length];
   const locale = await getCurrentLocale();
+  const dbProjects = await getPortfolioProjects(locale);
+  const projectIndex = dbProjects.findIndex((item) => item.href.endsWith(slug));
+  const project = projectIndex >= 0 ? dbProjects[projectIndex] : await getPortfolioProject(slug, locale);
+  if (!project) notFound();
+  const nextProject = dbProjects[(Math.max(projectIndex, 0) + 1) % dbProjects.length] ?? project;
   const t = await getDictionary(locale);
 
   return (
@@ -68,9 +72,11 @@ export default async function WorkCasePage({
               <p className="case-page__kicker">{project.category[locale]}</p>
               <h1>{project.title[locale]}</h1>
               <p className="case-page__lead">{project.summary[locale]}</p>
-              <div className="case-page__hero-audio">
-                <AudioPlayer src={project.audioUrl} duration={project.duration} labels={{ play: t.common.play, pause: t.common.pause }} />
-              </div>
+              {project.audioUrl ? (
+                <div className="case-page__hero-audio">
+                  <AudioPlayer src={project.audioUrl} duration={project.duration} labels={{ play: t.common.play, pause: t.common.pause }} />
+                </div>
+              ) : null}
               <RequestModalButton className="case-page__order" locale={locale} serviceId="guide">
                 {t.case.orderAudioGuide}
               </RequestModalButton>

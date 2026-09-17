@@ -2,15 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { services } from "@/app/services/[slug]/data";
+import { services as staticServices } from "@/app/services/[slug]/data";
 import type { Locale } from "@/lib/i18n";
+
+export type ServiceListItem = {
+  id: string;
+  number: string;
+  title: Record<Locale, string>;
+  meta: Record<Locale, string>;
+  image: string;
+  href: string;
+};
 
 export function ServicesSection({
   locale,
-  copy
+  copy,
+  services = staticServices
 }: {
   locale: Locale;
   copy: { label: string; headline: string[] };
+  services?: ServiceListItem[];
 }) {
   const keepInline = (value: string) => value.replaceAll(" / ", "\u00a0/\u00a0");
 

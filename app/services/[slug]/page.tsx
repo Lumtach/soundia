@@ -6,7 +6,10 @@ import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { getCurrentLocale } from "@/lib/current-locale";
+import { getServiceDetail } from "@/lib/services-content";
 import { services } from "./data";
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return services.map((service) => ({
@@ -21,7 +24,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const locale = await getCurrentLocale();
-  const service = services.find((item) => item.href.endsWith(slug));
+  const service = await getServiceDetail(slug, locale);
 
   if (!service) {
     return {};
@@ -45,7 +48,7 @@ export default async function ServicePage({
 }) {
   const { slug } = await params;
   const locale = await getCurrentLocale();
-  const service = services.find((item) => item.href.endsWith(slug));
+  const service = await getServiceDetail(slug, locale);
   const allServicesLabel = locale === "ru" ? "Все услуги" : locale === "lv" ? "Visi pakalpojumi" : "All services";
   const audioLabels = locale === "ru" ? { play: "Воспроизвести фрагмент", pause: "Пауза" } : locale === "lv" ? { play: "Atskaņot fragmentu", pause: "Pauze" } : { play: "Play preview", pause: "Pause" };
 
@@ -71,9 +74,11 @@ export default async function ServicePage({
                     <h1>{service.title[locale]}</h1>
                     <p>{service.description[locale]}</p>
                   </header>
-                  <aside className="service-page__audio">
-                    <AudioPlayer src={service.audioUrl} duration={service.duration} labels={audioLabels} />
-                  </aside>
+                  {service.audioUrl ? (
+                    <aside className="service-page__audio">
+                      <AudioPlayer src={service.audioUrl} duration={service.duration} labels={audioLabels} />
+                    </aside>
+                  ) : null}
                 </div>
               </section>
 
