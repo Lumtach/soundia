@@ -1,4 +1,4 @@
-import { Waveform } from "@/components/order/audio/Waveform";
+import { Waveform } from "@/components/audio/Waveform";
 import { Container } from "@/components/ui/Container";
 
 export function SoundExperience({
