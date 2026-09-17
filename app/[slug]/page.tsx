@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { AudioPlayer } from "@/components/order/audio/AudioPlayer";
+import { AudioPlayer } from "@/components/audio/AudioPlayer";
 import { RequestModalButton } from "@/components/order/RequestModalButton";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
