@@ -90,7 +90,7 @@ export function MobileMenu({
               </nav>
 
               <address className="mobile-menu__contacts">
-                <strong>{nav.contact}</strong>
+                {/* <strong>{nav.contact}</strong> */}
                 <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
                 <a href={`tel:${contacts.phone.replace(/\s/g, "")}`}>{contacts.phone}</a>
                 <span>{contacts.messaging}</span>
