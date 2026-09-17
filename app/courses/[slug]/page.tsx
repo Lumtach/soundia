@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { coursePageCopy, courses } from "./data";
 import { getCurrentLocale } from "@/lib/current-locale";
-import { MoveLeft } from "lucide-react";
 
 export function generateStaticParams() {
   return courses.map((course) => ({ slug: course.slug }));
@@ -49,7 +48,7 @@ export default async function CoursePage({
       <section className="course-detail-hero">
         <Container>
           <Link  href="/courses">
-            <MoveLxeft/>
+            {copy.back}
           </Link>
           <p className="course-detail-hero__meta">{course.meta[locale]}</p>
           <h1>{course.title[locale]}</h1>
