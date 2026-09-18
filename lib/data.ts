@@ -1,4 +1,5 @@
 import type { Locale } from "./i18n";
+import { contacts as editableContacts } from "@/lib/site-content";
 
 export type LocalizedText = Record<Locale, string>;
 
@@ -41,19 +42,4 @@ export type SocialLink = {
   href: string;
 };
 
-export const contacts = {
-  email: "info@soundia.studio",
-  phone: "+371 29230745",
-  messaging: "whatsapp, telegram",
-  address: "Eizenšteina 59a, Riga, Latvija",
-  socials: [
-    {
-      label: "Instagram",
-      href: "https://www.instagram.com/soundia.production"
-    },
-    {
-      label: "Facebook",
-      href: "https://www.facebook.com/soundia.production"
-    }
-  ] satisfies SocialLink[]
-};
+export const contacts = editableContacts;

@@ -71,7 +71,6 @@ export function PortfolioProjectList({ locale, projects }: { locale: Locale; pro
                 <p>{getPortfolioSummary(project.summary[locale])}</p>
                 {project.audioUrl ? <AudioPlayer src={project.audioUrl} duration={project.duration} labels={audioLabels} /> : null}
               </div>
-              {/* <span className="portfolio-showcase__year">{project.year}</span> */}
             </article>
           );
         })}
