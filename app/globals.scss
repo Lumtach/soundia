@@ -7092,7 +7092,8 @@ body:has(.pricing-page) .footer {
 /* Stronger page dim while the drawer is open. */
 .mobile-menu__overlay {
   background: rgba(0, 0, 0, .72);
-  backdrop-filter: brightness(.62);
+  backdrop-filter: blur(14px) brightness(.62);
+  -webkit-backdrop-filter: blur(14px) brightness(.62);
   z-index: 110;
 }
 
@@ -9279,4 +9280,105 @@ button.price-item__order:hover span,
 a.price-item__order:hover span,
 .pricing .price-item__order:hover span {
   color: #ffffff !important;
+}
+
+/* Keep the header glass state consistent when scrolling or opening the menu. */
+.site-header {
+  isolation: isolate;
+  overflow: hidden;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.site-header::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  background: rgba(5, 13, 22, .56);
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  transition: opacity .28s ease;
+}
+
+.site-header > * {
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  filter: none;
+}
+
+.site-header--scrolled {
+  background: transparent;
+  border-bottom-color: rgba(174, 222, 255, .14);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .24);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.site-header--scrolled::before,
+body.is-menu-open .site-header::before {
+  opacity: 1;
+}
+
+body.is-menu-open .site-header {
+  background: transparent;
+  border-bottom-color: rgba(174, 222, 255, .14);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .24);
+}
+
+body.is-menu-open .site-header > *,
+body.is-menu-open .site-header__logo,
+body.is-menu-open .site-header__right .global-audio-toggle,
+body.is-menu-open .site-header__right .language-dropdown summary,
+body.is-menu-open .site-header__right .mobile-menu__toggle {
+  opacity: 1;
+  filter: none;
+}
+
+body.is-menu-open .site-header__logo {
+  visibility: visible;
+}
+
+/* Legacy fallback if an older stylesheet chunk still targets the class directly. */
+.site-header--scrolled:not(.site-header) {
+  background: rgba(5, 13, 22, .68);
+  border-bottom-color: rgba(174, 222, 255, .14);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .24);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+}
+
+.mobile-menu__overlay {
+  inset: 78px 0 0 0;
+  background: rgba(0, 0, 0, .52);
+}
+
+.mobile-menu__panel {
+  height: 100%;
+  margin-top: 0;
+}
+
+@media (max-width: 1024px) {
+  .mobile-menu__overlay {
+    inset: 76px 0 0 0;
+  }
+
+  .mobile-menu__panel {
+    height: 100%;
+    margin-top: 0;
+  }
+}
+
+body > main,
+body > footer {
+  transition: filter .28s ease;
+}
+
+body.is-menu-open > main,
+body.is-menu-open > footer {
+  filter: blur(14px) brightness(.55);
 }

@@ -15,10 +15,12 @@ const homeLabels: Record<Locale, string> = {
 
 export function MobileMenu({
   locale,
-  nav
+  nav,
+  onOpenChange
 }: {
   locale: Locale;
   nav: Record<string, string>;
+  onOpenChange?: (open: boolean) => void;
 }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -27,12 +29,17 @@ export function MobileMenu({
   const isHomePage = pathname === localizePath(locale);
 
   useEffect(() => {
+    onOpenChange?.(open);
+  }, [onOpenChange, open]);
+
+  useEffect(() => {
     if (!open) return;
 
     const originalOverflow = document.body.style.overflow;
     const originalPaddingRight = document.body.style.paddingRight;
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
+    document.body.classList.add("is-menu-open");
     document.body.style.overflow = "hidden";
     if (scrollbarWidth > 0) {
       document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -52,6 +59,7 @@ export function MobileMenu({
 
     return () => {
       document.removeEventListener("pointerdown", closeOnOutsideClick, true);
+      document.body.classList.remove("is-menu-open");
       document.body.style.overflow = originalOverflow;
       document.body.style.paddingRight = originalPaddingRight;
     };
