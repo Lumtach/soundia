@@ -77,7 +77,7 @@ function toIsoDate(value: Date | string | null) {
 function assetUrl(file: string | null, envName: "SERVICE_IMAGE_BASE_URL" | "SERVICE_AUDIO_BASE_URL") {
   if (!file) return null;
 
-  const baseUrl = process.env[envName] ?? (envName === "SERVICE_AUDIO_BASE_URL" ? "https://soundia.zenith.lv/audio" : "");
+  const baseUrl = process.env[envName] ?? "https://soundia.zenith.lv/crm";
   if (!baseUrl) return file;
 
   return `${baseUrl.replace(/\/$/, "")}/${file.replace(/^\//, "")}`;

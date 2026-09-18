@@ -98,10 +98,7 @@ function assetUrl(file: string | null, envName: "SERVICE_IMAGE_BASE_URL" | "SERV
   if (!file) return null;
   if (file.startsWith("http://") || file.startsWith("https://") || file.startsWith("/")) return file;
 
-  const fallback =
-    envName === "PORTFOLIO_IMAGE_BASE_URL" || envName === "PORTFOLIO_AUDIO_BASE_URL"
-      ? "http://127.0.0.1/crm"
-      : "";
+  const fallback = "https://soundia.zenith.lv/crm";
   const baseUrl = process.env[envName] ?? fallback;
 
   if (!baseUrl) return file;
