@@ -9285,7 +9285,6 @@ a.price-item__order:hover span,
 /* Keep the header glass state consistent when scrolling or opening the menu. */
 .site-header {
   isolation: isolate;
-  overflow: hidden;
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
